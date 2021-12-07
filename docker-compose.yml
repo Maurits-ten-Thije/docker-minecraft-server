@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  modded-mc:
+    image: itzg/minecraft-server
+    environment:
+      EULA: "TRUE"
+      TYPE: CURSEFORGE
+      CF_SERVER_MOD: https://media.forgecdn.net/files/3551/592/SIMPLE-SERVER-FILES-0.1.5.zip
+      REMOVE_OLD_MODS: TRUE
+      MEMORY: 5G
+      MAX_MEMORY: 14G
+      OPS: capitalspeed
+      MODE: survival
+      SERVER_PORT: "25566"
+    ports:
+      - "25566:25566"
+    volumes:
+      - ./data:/data
+      - ./modpacks:/modpacks:ro
+    restart: always
+#  sftp:
+#    image: atmoz/sftp
+#    container_name: modded-mc-sftp-server
+#    volumes:
+#      - ./sftp/users.conf:/etc/sftp/users.conf
+#      - ./sftp/create-shared-dir.sh:/etc/sftp.d/init.sh:ro
+#    ports:
+#      - "2222:22"
+#    restart: always
+
+volumes:
+  data: {}
